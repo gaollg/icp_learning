@@ -9,6 +9,7 @@ dfx start --background
 dfx stop
 dfx deploy
 
+dfx deploy --network=ic --with-cycles 1000000000000
 
 dfx identity get-principal 
 dfx identity get-wallet --network=ic
