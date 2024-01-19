@@ -4,9 +4,11 @@ import Iter "mo:base/Iter";
 import Principal "mo:base/Principal";
 
 actor {
+
   public type Message = {
     text : Text;
     time : Time.Time;
+    author : Principal;
   };
 
   public type Microblog = actor {
@@ -27,12 +29,23 @@ actor {
     List.toArray(followed);
   };
 
+  stable var blogName : Text = "";
+
+  public shared (msg) func set_name(text : Text) : async () {
+    blogName := text;
+  };
+
+  public shared query func get_name() : async Text {
+    blogName;
+  };
+
   stable var messages : List.List<Message> = List.nil();
 
   public shared (msg) func post(text : Text) : async () {
     let newMessage = {
       text = text;
       time = Time.now();
+      author = msg.caller;
     };
     messages := List.push(newMessage, messages);
   };
