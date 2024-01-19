@@ -14,7 +14,6 @@ let reload = async () => {
   });
   document.getElementById("content").innerHTML = array.join("<hr/>");
 }
-reload();
 
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -31,3 +30,5 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   button.removeAttribute("disabled");
   return false;
 });
+
+reload();
